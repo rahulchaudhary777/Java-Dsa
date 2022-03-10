@@ -1,0 +1,99 @@
+package oops.linkedList;
+
+import java.util.Scanner;
+
+// incomplete code  ------------------------------------------------------------------------------------------
+
+public class circularSinglyLinkedList {
+    int data;
+    circularSinglyLinkedList next;
+
+    circularSinglyLinkedList(int data){
+        this.data = data;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        insertFirst obj = new insertFirst();
+
+        //System.out.println("enter elements to insert elements at beginning of linked-List: ");
+        
+        // i means Insert
+        // d means Delete
+        
+        obj.iFirst(sc.nextInt());
+        obj.iFirst(sc.nextInt());
+        obj.iFirst(sc.nextInt());
+        obj.iFirst(sc.nextInt());
+
+        obj.iLast(0);
+        obj.iLast(9);
+        obj.iLast(8);
+        obj.iLast(7);
+        obj.iLast(5);
+        obj.iLast(3);
+
+        obj.dLast();
+        obj.dLast();
+
+
+        obj.display();
+    }
+}
+class insertFirst{
+    static circularSinglyLinkedList head;
+
+    public void iFirst(int nnode){
+        circularSinglyLinkedList newnode = new circularSinglyLinkedList(nnode);
+        if(head == null){
+            newnode.next = head;
+            head = newnode;
+
+            //head.next = head;
+        }
+        else{
+            newnode.next = head;
+            head = newnode;
+        }
+    }
+    public void dLast(){
+        circularSinglyLinkedList temp = head;
+        while(temp.next.next != head){
+            temp = temp.next;
+        }
+        temp.next = head;
+    }
+
+    public void iLast(int nnode){
+        circularSinglyLinkedList newnode = new circularSinglyLinkedList(nnode);
+
+        if(head == null){
+            head = newnode;
+            newnode.next = head;
+        }
+        else{
+           circularSinglyLinkedList temp = head;
+
+           while(temp.next != head){
+               temp = temp.next;
+           }
+           newnode.next = head;
+           temp.next = newnode;
+        }
+    }
+
+    public void display(){
+        if(head == null){
+            System.out.println("empty linked-List");
+        }
+        else{
+            circularSinglyLinkedList temp = head;
+
+            while(temp.next != head){
+                System.out.println(temp.data);
+                temp = temp.next;
+            }
+            System.out.println(temp.data);
+        }
+    }
+}
