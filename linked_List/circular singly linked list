@@ -1,98 +1,164 @@
 package oops.linkedList;
 
-import java.util.Scanner;
-
-// incomplete code  ------------------------------------------------------------------------------------------
-
-public class circularSinglyLinkedList {
+public class circularLinkedList {
+    
     int data;
-    circularSinglyLinkedList next;
+    circularLinkedList next;
 
-    circularSinglyLinkedList(int data){
+    public circularLinkedList(int data){
         this.data = data;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        insertFirst obj = new insertFirst();
 
-        //System.out.println("enter elements to insert elements at beginning of linked-List: ");
-        
-        // i means Insert
-        // d means Delete
-        
-        obj.iFirst(sc.nextInt());
-        obj.iFirst(sc.nextInt());
-        obj.iFirst(sc.nextInt());
-        obj.iFirst(sc.nextInt());
+        Circular obj = new Circular();
+        obj.insertAtLast(12);
+        obj.insertAtLast(13);
+        obj.insertAtLast(14);
+        obj.insertAtLast(15);
+        obj.insertAtLast(16);
 
-        obj.iLast(0);
-        obj.iLast(9);
-        obj.iLast(8);
-        obj.iLast(7);
-        obj.iLast(5);
-        obj.iLast(3);
-
-        obj.dLast();
-        obj.dLast();
+        //obj.insertAtIndex(1,100);
+        //obj.deleteFromFirst();
+        obj.deleteFromLast();
 
 
         obj.display();
     }
 }
-class insertFirst{
-    static circularSinglyLinkedList head;
+class Circular{
 
-    public void iFirst(int nnode){
-        circularSinglyLinkedList newnode = new circularSinglyLinkedList(nnode);
-        if(head == null){
-            newnode.next = head;
-            head = newnode;
+    circularLinkedList head, tail;
 
-            //head.next = head;
-        }
-        else{
-            newnode.next = head;
-            head = newnode;
-        }
-    }
-    public void dLast(){
-        circularSinglyLinkedList temp = head;
-        while(temp.next.next != head){
-            temp = temp.next;
-        }
-        temp.next = head;
-    }
-
-    public void iLast(int nnode){
-        circularSinglyLinkedList newnode = new circularSinglyLinkedList(nnode);
+ // add element at first index
+ 
+    public void insertAtFirst(int nnode){
+        circularLinkedList newnode = new circularLinkedList(nnode);
 
         if(head == null){
-            head = newnode;
+            head = tail = newnode;
             newnode.next = head;
         }
         else{
-           circularSinglyLinkedList temp = head;
-
-           while(temp.next != head){
-               temp = temp.next;
-           }
            newnode.next = head;
-           temp.next = newnode;
+           head = newnode;
+           tail.next = head;
+        }
+    }
+    
+    public void insertAtLast(int nnode){
+        circularLinkedList newnode = new circularLinkedList(nnode);
+        
+        if(head == null){
+            head = tail = newnode;
+            newnode.next = head;
+        }
+        else{
+            circularLinkedList temp = head;
+            while(temp.next != head){
+                temp = temp.next;
+            }
+            tail.next = newnode;
+            newnode.next = head;
+            tail = newnode;
+        }
+    }
+    public int size(){
+    
+        int s = 0;
+        if(head == null){
+            s=0;
+        }
+        else{
+            circularLinkedList temp = head;
+            while (temp.next != head){
+                s++;
+                temp = temp.next;
+            }
+        }
+        return s;
+    }
+
+    // insert element at given index
+
+    public void insertAtIndex(int index, int nnode){
+
+        // create object of circularLinkedList class and convert int data into object
+        
+        circularLinkedList newnode = new circularLinkedList(nnode);
+
+        if(index >= size()){
+            System.out.println("Invalid Index");
+            return;
+        }
+        else{
+            if(head == null){
+                head = tail = newnode;
+                newnode.next = head;
+            }
+            else{
+                circularLinkedList temp = head;
+                int i = 1;
+                while(temp.next != head){
+                    if(i == index){
+                        newnode.next = temp.next;
+                        temp.next = newnode;
+                    }
+                    i++;
+                    temp = temp.next;
+                }
+            }
         }
     }
 
-    public void display(){
+    public void deleteFromFirst(){
+    
         if(head == null){
-            System.out.println("empty linked-List");
+            System.out.println("Empty linked-List at deleteFromFirst operation");
         }
         else{
-            circularSinglyLinkedList temp = head;
+            head = head.next;
+            tail.next = head;
+        }
+    }
 
+    // Delete element from last of circular linked-List
+    
+    public void deleteFromLast(){
+    
+        if(head == null){
+            System.out.println("Empty linked-List at deleteFromLast operation");
+        }
+        else{
+            // delete elements from last if linked-List is not empty
+            
+            circularLinkedList temp = head;
+
+            while(temp.next.next != head){
+                // Initialize second last element of linked-List with head value
+                // so that at the display time function stop at second last element.
+                
+                temp = temp.next;
+            }
+            temp.next = head;
+        }
+    }
+
+    // Display elements of circular linked-List
+    
+    public void display(){
+    
+        if(head == null){
+            System.out.println("Empty linked-List");
+        }
+        else{
+            circularLinkedList temp = head;
             while(temp.next != head){
                 System.out.println(temp.data);
                 temp = temp.next;
             }
+            // it prints last element of linked-List
+            
             System.out.println(temp.data);
         }
     }
