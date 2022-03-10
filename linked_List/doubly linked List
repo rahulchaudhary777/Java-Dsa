@@ -1,0 +1,194 @@
+package oops.linkedList;
+
+import java.util.Scanner;
+
+public class doublyLinkedList {
+    int data;
+    doublyLinkedList next, prev;
+
+    doublyLinkedList(int data){
+        this.data = data;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        axe obj = new axe();
+
+        System.out.println("""
+                choices are:
+                1. Insert At First
+                2. Insert At Last
+                3. Insert At Index
+                4. Delete At First
+                5. Delete At Last
+                6. Delete At Index
+                7. display
+                8. Reverse Display
+                9. exit
+                """);
+        boolean b = true;
+
+        while(b){
+            System.out.print("enter choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice){
+                case 1 -> obj.insertAtFirst();
+                case 2 -> obj.insertAtLast();
+                case 3-> obj.insertAtIndex();
+                case 4 -> obj.deleteFirst();
+                case 5 -> obj.deleteLast();
+                case 6 -> obj.deleteIndex();
+                case 7 -> obj.display();
+                case 8 -> obj.reverseDisplay();
+                case 9 -> b = false;
+                default -> System.out.println("Invalid choice");
+            }
+        }
+    }
+}
+class axe{
+    doublyLinkedList head;
+    Scanner sc = new Scanner(System.in);
+
+    public void insertAtFirst(){
+        System.out.print("element of linked list: ");
+        doublyLinkedList newnode = new doublyLinkedList(sc.nextInt());
+
+        if(head == null)
+            head = newnode;
+        else{
+            newnode.next = head;
+            head.prev = newnode;
+            head = newnode;
+        }
+    }
+    public void insertAtLast(){
+
+        System.out.print("element of linked list: ");
+        doublyLinkedList newnode = new doublyLinkedList(sc.nextInt());
+
+        if(head == null)
+            head = newnode;
+        else{
+            doublyLinkedList temp = head;
+            while(temp.next != null){
+                temp = temp.next;
+            }
+            temp.next = newnode;
+            newnode.prev = temp;
+        }
+    }
+
+    public int size(){
+        int s=0;
+        if(head == null)
+            s=0;
+        else{
+            doublyLinkedList temp = head;
+            while(temp.next != null){
+                temp = temp.next;
+                s++;
+            }
+        }
+        return s;
+    }
+
+    public void insertAtIndex(){
+
+        System.out.print("element of linked list: ");
+        doublyLinkedList newnode = new doublyLinkedList(sc.nextInt());
+
+        System.out.print("index to insert this element: ");
+        int index = sc.nextInt();
+
+        if(index < 1 || index > size())
+            System.out.println("invalid index");
+
+        else{
+            doublyLinkedList temp = head;
+            int cr = 0;
+
+            while(cr < index-1){
+                temp = temp.next;
+                cr++;
+            }
+            temp.next.prev = newnode;
+            newnode.next = temp.next;
+            newnode.prev = temp;
+            temp.next = newnode;
+        }
+    }
+    public void deleteFirst(){
+        if(head == null)
+            System.out.println("empty doubly linked list");
+        else{
+            head = head.next;
+        }
+    }
+
+    public void deleteLast(){
+        if(head == null)
+            System.out.println("empty doubly linked list");
+        else{
+            doublyLinkedList temp = head;
+            while(temp.next.next != null){
+                temp = temp.next;
+            }
+            temp.next = null;
+        }
+    }
+
+    public  void deleteIndex(){
+
+        System.out.print("index to delete element: ");
+        int index = sc.nextInt();
+
+        if(index < 1 || index > size())
+            System.out.println("invalid index");
+
+        else{
+            doublyLinkedList temp = head;
+            int cr = 0;
+
+            while(cr < index-1){
+                temp = temp.next;
+                cr++;
+            }
+            doublyLinkedList node;
+            node = temp.next;
+            temp.next = node.next;
+            node.next.prev = temp;
+        }
+    }
+
+    public void display() {
+        if (head == null)
+            System.out.println("empty doubly linked list");
+        else {
+            doublyLinkedList temp = head;
+            while (temp != null) {
+                System.out.println(temp.data);
+                temp = temp.next;
+            }
+        }
+    }
+    public void reverseDisplay() {
+
+        if (head == null) {
+            System.out.println("empty linked-List");
+        } else {
+            System.out.println("reverse linked-List: ");
+
+            doublyLinkedList temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            while (temp != null) {
+                System.out.println(temp.data);
+                temp = temp.prev;
+            }
+        }
+    }
+}
