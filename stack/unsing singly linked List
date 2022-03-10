@@ -1,0 +1,192 @@
+package oops.linkedList;
+
+import java.util.Scanner;
+
+import static oops.linkedList.stackUsingArray.sc;
+
+public class singlyLinkedList {
+    int data;
+    singlyLinkedList next;
+
+    singlyLinkedList(int data){
+        this.data = data;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        singly obj = new singly();
+
+        System.out.println("""
+                choices are:
+                1. Insert At First
+                2. Insert At Last
+                3. Insert At Index
+                4. Delete At First
+                5. Delete At Last
+                6. Delete At Index
+                7. display
+                8. exit
+                """);
+        boolean b = true;
+
+        while(b){
+            System.out.print("enter choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice){
+                case 1 -> obj.insertAtFirst();
+                case 2 -> obj.insertAtEnd();
+                case 3-> obj.insertAtIndex();
+                case 4 -> obj.deleteFirst();
+                case 5 -> obj.deleteLast();
+                case 6 -> obj.deleteIndex();
+                case 7 -> obj.display();
+                case 8 -> b = false;
+                default -> System.out.println("Invalid choice");
+            }
+        }
+    }
+}
+
+class singly{
+
+    singlyLinkedList head;
+
+    public void insertAtFirst(){
+
+        System.out.print("element of linked list: ");
+        singlyLinkedList newnode = new singlyLinkedList(sc.nextInt());
+
+        // insert value if head is null means linked-list is empty
+        if(head == null){
+            head = newnode;
+        }
+
+        // insert value at beginning if head is not null means linked-list contains some values
+        else {
+            newnode.next = head;
+            head = newnode;
+        }
+    }
+
+    // Insert value at the end
+    public void insertAtEnd(){
+
+        System.out.print("element of linked list: ");
+        singlyLinkedList newnode = new singlyLinkedList(sc.nextInt());
+
+        // insert value if head is null means linked-list is empty
+        if(head == null){
+            head = newnode;
+        }
+
+        // Insert value at end if linked-List contains some nodes already
+        else{
+            singlyLinkedList temp = head;
+
+            while(temp.next!= null){
+                temp = temp.next;
+            }
+            temp.next = newnode;
+        }
+    }
+
+    public int size(){
+        int s = 0;
+        if(head == null) {
+            s = 0;
+        }
+        else{
+            singlyLinkedList temp = head;
+            while(temp.next != null){
+                temp = temp.next;
+                s++;
+            }
+        }
+        return s;
+    }
+
+    public void insertAtIndex(){
+
+        System.out.print("element of linked list: ");
+        singlyLinkedList newnode = new singlyLinkedList(sc.nextInt());
+
+        System.out.print("index to insert this element: ");
+        int index = sc.nextInt();
+
+        int c = 1;
+
+        if(index > size() || index < 1)
+            System.out.println("Invalid index");
+
+        else{
+            singlyLinkedList temp = head;
+
+            while (c < index-1){
+                temp = temp.next;
+                c++;
+            }
+            newnode.next = temp.next;
+            temp.next = newnode;
+        }
+    }
+
+    public void deleteFirst(){
+        if(head == null)
+            System.out.println("emoty linked list");
+        else {
+            head = head.next;
+        }
+    }
+    public void deleteLast(){
+
+        if(head == null){
+            System.out.println("empty");
+        }
+
+        else{
+            singlyLinkedList temp = head;
+
+            while(temp.next.next != null){
+                temp = temp.next;
+            }
+            temp.next = null;
+        }
+    }
+
+    public void deleteIndex(){
+
+        System.out.print("index to delete element: ");
+        int index = sc.nextInt();
+
+        if(index < 1 || index > size())
+            System.out.println("invalid index");
+
+        else{
+            if(head == null)
+                System.out.println("empty linked list");
+
+            else{
+                singlyLinkedList temp = head;
+                int i = 1;
+                while(i < index-1){
+                    temp = temp.next;
+                    i++;
+                }
+                temp.next = temp.next.next;
+            }
+        }
+    }
+
+    public void display(){
+
+        singlyLinkedList temp1 = head;
+
+        while(temp1 != null){
+            System.out.println(temp1.data);
+            temp1 = temp1.next;
+        }
+    }
+}
