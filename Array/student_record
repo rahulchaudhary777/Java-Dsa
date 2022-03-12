@@ -1,0 +1,44 @@
+package music;
+
+import java.util.Scanner;
+
+public class D2 {
+
+    // implementation of class reference array with default attributres
+
+    String name;
+    int roll, marks;
+
+    D2(String name, int roll, int marks){
+        this.name = name;
+        this.roll = roll;
+        this.marks = marks;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("how many entries you want in array: ");
+        int n = sc.nextInt();
+
+        // syntax of class reference array
+        D2 []arr = new D2[n];
+
+        System.out.println("input name, roll_no. & marks of "+n+" students: ");
+
+        for(int i=0;i<n;i++){
+        
+        // create object of array for each student.
+            arr[i] = new D2(sc.next(),sc.nextInt(),sc.nextInt());
+        }
+
+        System.out.println("Entries of array: ");
+        
+        // output of array elements (Student record)
+
+        for(int i=0;i<n;i++){
+            System.out.println(arr[i].name+" "+arr[i].roll+" "+arr[i].marks);
+        }
+    }
+}
