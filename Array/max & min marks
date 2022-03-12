@@ -2,8 +2,7 @@ package music;
 
 import java.util.Scanner;
 
-public class D3 {
-    /* Create an array of 10 students and print the record of those students who got the highest marks and who got minimum marks.
+/* Create an array of 10 students and print the record of those students who got the highest marks and who got minimum marks.
      The structure of student class is as follows
 class Student
 {
@@ -15,6 +14,9 @@ class Student
 
   create constructor or getter and setter methods as per need*/
 
+
+public class D3 {
+    
     private int roll, marks;
     private String name;
 
@@ -52,13 +54,17 @@ class Student
 
         for(int i=0;i<n;i++){
         
+	// objcet creation of every array obeject
             arr[i] = new D3();
+	    
             arr[i].setName(sc.next());
             arr[i].setRoll(sc.nextInt(),sc.nextInt());
         }
         
         int max = arr[0].getMarks();
         int min = arr[0].getMarks(),k=0,j=0;
+	
+	// details of students whose get maximum and minimum marks
 
         for(int i=0;i<n;i++){
         
