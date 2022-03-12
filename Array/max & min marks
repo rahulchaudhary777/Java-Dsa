@@ -1,0 +1,78 @@
+package music;
+
+import java.util.Scanner;
+
+public class D3 {
+    /* Create an array of 10 students and print the record of those students who got the highest marks and who got minimum marks.
+     The structure of student class is as follows
+class Student
+{
+
+	private int rollno;
+	private int marks;
+	private String name;
+}
+
+  create constructor or getter and setter methods as per need*/
+
+    private int roll, marks;
+    private String name;
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public int getRoll(){
+        return roll;
+    }
+
+    public int getMarks(){
+        return marks;
+    }
+
+    public void setRoll(int roll, int marks){
+        this.roll = roll;
+        this.marks = marks;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("how many entries you want in array: ");
+        int n = sc.nextInt();
+
+        D3 []arr = new D3[n];
+
+        System.out.println("input name, roll_no. & marks of "+n+" students: ");
+
+        for(int i=0;i<n;i++){
+        
+            arr[i] = new D3();
+            arr[i].setName(sc.next());
+            arr[i].setRoll(sc.nextInt(),sc.nextInt());
+        }
+        
+        int max = arr[0].getMarks();
+        int min = arr[0].getMarks(),k=0,j=0;
+
+        for(int i=0;i<n;i++){
+        
+            if(arr[i].getMarks() > max){
+                max = arr[i].getMarks();
+                k = i;
+            }
+            if(arr[i].getMarks() < min){
+                min = arr[i].getMarks();
+                j = i;
+            }
+        }
+        System.out.println("Information of student who get maximum marks: "+arr[k].getName()+" "+arr[k].getRoll()+" "+arr[k].getMarks());
+        
+        System.out.println("Information of student who get minimum marks: "+arr[j].getName()+" "+arr[j].getRoll()+" "+arr[j].getMarks());
+    }
+}
