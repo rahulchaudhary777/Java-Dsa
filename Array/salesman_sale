@@ -1,0 +1,62 @@
+/* There is a company that manufactures three types of products. In this company, there are 5 salesmen.
+   Each salesman is supposed to sell three products. Write a program to print
+
+(i) The total no of sales by each salesman and
+(ii) total sales of each item.
+The structure of the class Company is as follows:-
+
+class Company
+{
+	int products[];
+}
+
+HInt:-
+Company salesman[]= new Company[5];
+
+Output :-
+Enter the sales of 3 items sold by salesman 1: 23 23 45
+Enter the sales of 3 items sold by salesman 2: 34 45 63
+Enter the sales of 3 items sold by salesman 3: 36 33 43
+Enter the sales of 3 items sold by salesman 4: 33 52 35
+Enter the sales of 3 items sold by salesman 5: 32 45 64
+Total Sales By Salesman 1 = 91
+Total Sales By Salesman 2 = 142
+Total Sales By Salesman 3 = 112
+Total Sales By Salesman 4 = 120
+Total Sales By Salesman 5 = 141
+Total sales of item 1 = 158
+Total sales of item 2 = 198
+Total sales of item 3 = 250 */
+
+
+import java.util.Scanner;
+
+public class D4 {
+    int p1,p2,p3;
+    D4(int p1, int p2, int p3){
+        this.p1 = p1;
+        this.p2 = p2;
+        this.p3 = p3;
+    }
+    public static void main(String[] args) {
+        int []products;
+        Scanner sc = new Scanner(System.in);
+        D4 []arr = new D4[5];
+
+        for(int i=0;i<5;i++){
+        
+            System.out.print("Enter the sales of 3 items sold by salesman "+(i+1)+": ");
+            
+            arr[i] = new D4(sc.nextInt(), sc.nextInt(),sc.nextInt());
+        }
+        
+        for(int i=0;i<5;i++){
+        
+            System.out.println("Total Sales By Salesman "+(i+1)+": "+(arr[i].p1+arr[i].p2+arr[i].p3));
+        }
+        
+        System.out.println("Total sale of Item 1: "+(arr[0].p1+arr[1].p1+arr[2].p1+arr[3].p1+arr[4].p1));
+        System.out.println("Total sale of Item 2: "+(arr[0].p2+arr[1].p2+arr[2].p2+arr[3].p2+arr[4].p2));
+        System.out.println("Total sale of Item 3: "+(arr[0].p3+arr[1].p3+arr[2].p3+arr[3].p3+arr[4].p3));
+    }
+}
