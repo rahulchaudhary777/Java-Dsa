@@ -1,0 +1,95 @@
+
+package oops.linkedList;
+
+import java.util.Scanner;
+// --------------------------------------------------------------------------------
+// Imcomplete code
+// It is only applicable if last element of array is non prime
+// else it is leave las prime sum value
+//-------------------------------------------------------------------------------
+
+public class primeSum {
+    int data, count;
+    primeSum next;
+
+    primeSum(int data, int count){
+        this.data = data;
+        this.count = count;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("prime number count & their sum: ");
+
+        abc obj = new abc();
+        obj.sum();
+
+        obj.display();
+    }
+}
+class abc{
+
+    primeSum head, tail;
+
+    static int []arr = {2,4,3,7,10,11,5,19,12,3,5,7,21};
+
+    public static int isPrime(int x){
+
+        int s = arr[x];
+
+        for(int i=2; i<=s/2;i++){
+            if(arr[x] % i == 0){
+                s = 0;
+                break;
+            }
+        }
+        return s;
+    }
+
+    public void sum(){
+
+        int sum1 = 0;
+        int count = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            int ab = isPrime(i);
+
+            if(ab == 0){
+
+                primeSum newnode = new primeSum(sum1, count);
+
+                if(head == null){
+                    head = tail = newnode;
+                }
+                else{
+                    tail.next = newnode;
+                    tail = newnode;
+                }
+                sum1 = 0;
+                count = 0;
+            }
+
+            else{
+                sum1 += ab;
+                count++;
+            }
+        }
+    }
+
+    public void display(){
+        if(head == null){
+            System.out.println("empty");
+        }
+        else{
+            primeSum temp = head;
+
+            while(temp.next != null){
+                System.out.println(temp.count+"  "+temp.data);
+                temp = temp.next;
+            }
+            System.out.println(temp.count+"  "+temp.data);
+        }
+    }
+}
+
