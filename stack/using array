@@ -1,0 +1,82 @@
+package oops.linkedList;
+
+
+public class stackArray {
+
+    static int top;
+    int []arr;
+    stackArray(int size){
+        arr = new int[size];
+        top = -1;
+    }
+
+    public static void main(String[] args) {
+
+        stackArray obj = new stackArray(10);
+
+        System.out.println(obj.isEmpty());
+        //obj.isFull();
+
+        obj.display();
+
+        obj.push(12); obj.push(13); obj.push(14);
+        obj.push(15); obj.push(16); obj.push(17);
+        obj.push(18);
+
+        System.out.println("Is Array Stack is empty: "+obj.isEmpty());
+
+        obj.pop();
+
+        obj.display();
+    }
+              //   user method starts after main function
+    public boolean isFull(){
+
+        return top == arr.length - 1;
+    }
+
+    public void push(int value){
+        if(isFull()){
+            System.out.println("stack overflow");
+        }
+        else{
+            top = top+1;
+            arr[top] = value;
+        }
+    }
+
+    public void pop(){
+
+        System.out.print("\nelement that is fetch from Stack: ");
+
+        if(isEmpty()){
+            System.out.println("stack underflow");
+        }
+        else{
+            System.out.println(arr[top]);
+            arr[top] = 0;
+            top = top-1;
+        }
+    }
+
+    public boolean isEmpty(){
+        return top == -1;
+    }
+
+    public void display(){
+
+        System.out.println("\nArrayStack elements: ");
+
+        if(isEmpty())
+            System.out.println("\t\tArrayStack is empty");
+
+        else {
+            int temp = top;
+            while (temp != -1) {
+                System.out.println(arr[temp]);
+                temp--;
+            }
+        }
+
+    }
+}
