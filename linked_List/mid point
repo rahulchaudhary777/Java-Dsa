@@ -1,0 +1,79 @@
+package oops.linkedList;
+
+public class midPoint {
+    int data;
+    midPoint next;
+    midPoint(int data){
+        this.data = data;
+    }
+
+    public static void main(String[] args) {
+        abz obj = new abz();
+        obj.insert(12);
+        obj.insert(13);
+        obj.insert(14);
+        obj.insert(15);
+        obj.insert(16);
+
+        obj.size();
+        obj.display();
+    }
+}
+
+class abz{
+    midPoint head;
+    int x = 0;
+
+    public void insert(int nnode){
+    
+        midPoint newnode = new midPoint(nnode);
+        if(head == null){
+            head = newnode;
+        }
+        else{
+            midPoint temp = head;
+            
+            while(temp.next != null){
+                temp = temp.next;
+            }
+            temp.next = newnode;
+        }
+    }
+    
+    // find midpoint of linked list
+    
+    public int size(){
+        midPoint temp = head;
+        
+        while(temp != null){
+            x++;
+            temp = temp.next;
+        }
+        return x;
+    }
+    
+    public void display(){
+    
+        if (head == null) {
+            System.out.println("empty linked-List");
+        }
+        
+        else{
+            midPoint temp = head;
+            int m=1;
+            
+            while(temp != null){
+                if(x%2 == 0 && m == x/2){
+                    System.out.println(temp.data);
+                }
+                
+                else if(x%2 == 1 && m == x/2){
+                    System.out.println(temp.next.data);
+                }
+                
+                temp = temp.next;
+                m++;
+            }
+        }
+    }
+}
