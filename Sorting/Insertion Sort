@@ -1,0 +1,19 @@
+class InsertionSort {
+    public static void main(String[] args) {
+        // Insertion Sort
+        int []arr = {9,3,6,15,6,14,7,1,13};
+
+        for(int i=1;i<arr.length;i++){
+            int temp = arr[i];
+            int j = i-1;
+
+            while(j >= 0 && arr[j] > temp){
+                arr[j+1] = arr[j];
+                j--;
+            }
+            arr[j+1] = temp;
+        }
+        for(Integer x : arr)
+            System.out.print(x+" ");
+    }
+}
