@@ -1,0 +1,42 @@
+class Merge Sort {
+    // Merge sort method
+    public static void divide(int []arr,int start, int end){
+
+        if(start < end){
+            int mid = (start+end)/2;
+            divide(arr,start,mid);
+            divide(arr,mid+1,end);
+            conquer(arr, start, mid, end);
+        }
+    }
+    public static void conquer(int []arr, int start, int mid, int end){
+        int idx1 = start;
+        int idx2 = mid+1;
+        int x=0;
+        int []merge = new int[end-start+1];
+
+        while(idx1 <= mid && idx2 <= end){
+            if(arr[idx1] <= arr[idx2])
+                merge[x++] = arr[idx1++];
+            else
+                merge[x++] = arr[idx2++];
+        }
+
+        while(idx1 <= mid)
+            merge[x++] = arr[idx1++];
+        while(idx2 <= end)
+            merge[x++] = arr[idx2++];
+
+        for(int i=0, j=start;i<merge.length;i++, j++){
+            arr[j] = merge[i];
+        }
+    }
+
+    public static void main(String[] args) {
+        int []arr = {5,1,3,6,8,2,4,0,9,12,10};
+        divide(arr,0,arr.length-1);
+
+        for(Integer i:arr)
+            System.out.print(i+" ");
+    }
+}
