@@ -1,0 +1,54 @@
+class binary {
+    // binary tree implementation using array
+    
+    int []arr;
+    int lastusedindex;
+
+    public binary(int size){
+        arr = new int[size+1];
+        lastusedindex = 0;
+    }
+    public void insert(int value){
+        if(lastusedindex > arr.length-1)
+            return;
+        arr[++lastusedindex] = value;
+    }
+
+    public void preOrderTraversal(int index){
+        if(index > lastusedindex)
+            return;
+        System.out.print(arr[index]+" ");
+        preOrderTraversal(2*index);
+        preOrderTraversal(2*index+1);
+    }
+    public int search(int value){
+        for(int i=1;i<=lastusedindex;i++)
+            if(arr[i] == value)
+                return i;
+        return -1;
+    }
+    public void deletion(int value){
+        int idx = search(value);
+        if(idx == -1)
+            return;
+        arr[idx] = arr[lastusedindex--];
+    }
+
+    public static void main(String[] args) {
+    
+        binary obj = new binary(7);
+        
+        obj.insert(10);
+        obj.insert(20);
+        obj.insert(30);
+        obj.insert(40);
+        obj.insert(50);
+        obj.insert(60);
+        obj.insert(70);
+        
+        obj.deletion(40);
+        obj.deletion(10);
+
+        obj.preOrderTraversal(1);
+    }
+}
