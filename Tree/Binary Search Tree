@@ -1,0 +1,96 @@
+class Node1{
+    int data;
+    Node1 left, right;
+
+    Node1(int data){
+        this.data = data;
+    }
+}
+
+
+public class BstLoop {
+
+    static Node1 root = null;
+
+    public static Node1 insert(Node1 root, int value){
+
+        Node1 newnode = new Node1(value);
+
+        if(root == null){
+            root = newnode;
+            return root;
+        }
+        else{
+
+            Node1 current = root;
+            Node1 parent = null;
+
+            while(true){
+                parent = current;
+
+                if(root.data > value){
+                    current = current.left;
+                    if(current == null){
+                        parent.left = newnode;
+                        return root;
+                    }
+                }
+                else if(root.data < value){
+                    current = current.right;
+
+                    if(current == null){
+                        parent.right = newnode;
+                        return root;
+                    }
+                }
+            }
+        }
+    }
+    public static void preOrderTraversal(Node1 root){
+
+        if(root == null)
+            return;
+
+        System.out.print(root.data+" ");
+        preOrderTraversal(root.left);
+        preOrderTraversal(root.right);
+    }
+    public static void inOrderTraversal(Node1 root){
+
+        if(root == null)
+            return;
+
+        preOrderTraversal(root.left);
+        System.out.print(root.data+" ");
+        preOrderTraversal(root.right);
+    }
+
+    public static void postOrderTraversal(Node1 root){
+
+        if(root == null)
+            return;
+
+        preOrderTraversal(root.left);
+        preOrderTraversal(root.right);
+        System.out.print(root.data+" ");
+    }
+
+    public static void main(String[] args) {
+
+        Node1 root = insert(null, 50);
+        insert(root, 40);
+        insert(root, 80);
+        insert(root, 70);
+        insert(root, 45);
+        insert(root,75);
+
+        System.out.println("Preorder Traversal: ");
+        preOrderTraversal(root);
+
+        System.out.println("\n Inorder Traversal: ");
+        inOrderTraversal(root);
+
+        System.out.println("\n PostOrder Traversal: ");
+        postOrderTraversal(root);
+    }
+}
