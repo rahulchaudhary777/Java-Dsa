@@ -1,0 +1,19 @@
+public static int maxNode(Node root){
+
+        // Finds Node which have Maximum value.
+        
+        if(root == null)
+            return Integer.MIN_VALUE;
+
+        return Math.max(root.data, Math.max(maxNode(root.left),maxNode(root.right)));
+    }
+
+    public static int sizeofBST(Node root){
+    
+        // Finds how many nodes are present in Tree
+        
+        if(root == null)
+            return 0;
+
+        return (sizeofBST(root.right)+sizeofBST(root.left)+1);
+    }
