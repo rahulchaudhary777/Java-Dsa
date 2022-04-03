@@ -1,0 +1,12 @@
+public static void print(Node root, int value){
+
+        if(root == null)
+            return;
+
+        if(value == 0){
+            System.out.print(root.data+" ");
+        }
+
+        print(root.left, value-1);
+        print(root.right, value-1);
+    }
