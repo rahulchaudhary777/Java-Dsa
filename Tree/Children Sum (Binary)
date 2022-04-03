@@ -1,0 +1,20 @@
+public static boolean childrenSum(Node root){
+
+        // check sum of root children data is equal to root data or not.
+        
+        if(root == null)
+            return true;
+
+        if(root.right == null && root.left == null)
+            return true;
+
+        int sum = 0;
+
+        if(root.left != null)
+            sum += root.left.data;
+
+        if(root.right != null)
+            sum += root.right.data;
+
+        return (Math.abs(sum) == root.data && childrenSum(root.left) && childrenSum(root.right));
+    }
