@@ -7,6 +7,16 @@ public static int maxNode(Node root){
 
         return Math.max(root.data, Math.max(maxNode(root.left),maxNode(root.right)));
     }
+    
+public static int minNode(Node root){
+
+        // Finds Node which have Minimum value.
+        
+        if(root == null)
+            return Integer.MAX_VALUE;
+
+        return Math.min(root.data, Math.min(minNode(root.left),minNode(root.right)));
+    }
 
     public static int sizeofBST(Node root){
     
