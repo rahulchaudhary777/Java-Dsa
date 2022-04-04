@@ -1,0 +1,22 @@
+static int first = 10;
+static int last = 50;
+
+public static void rangePrint(Node root){
+
+        // print all Nodes which have value between first & last
+        
+        if(root == null)
+            return;
+
+        if(root.data >= first && root.data <= last){
+
+            rangePrint(root.left);
+            System.out.print(root.data+" ");
+            rangePrint(root.right);
+        }
+        else if(root.data < first)
+            rangePrint(root.right);
+
+        else if(root.data > last)
+            rangePrint(root.left);
+    }
