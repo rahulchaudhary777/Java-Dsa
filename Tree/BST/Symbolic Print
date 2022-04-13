@@ -1,0 +1,30 @@
+public static void display(Node4 root){
+
+        if(root == null)
+            return;
+
+        display(root.left);
+
+        String str = " ";
+        if(root.left == null)
+            str += "null";
+        else
+            str += root.left.data;
+
+        str += " => "+root.data+" <= ";
+
+        if(root.right == null)
+            str += "null";
+        else
+            str += root.right.data;
+
+        System.out.println(str);
+
+        display(root.right);
+    }
+    
+    /*output :-  null => 10 <= null
+                 10 => 20 <= 25
+                 null => 22 <= null
+                 22 => 25 <= null
+    */
