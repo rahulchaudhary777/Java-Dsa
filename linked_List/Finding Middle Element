@@ -1,0 +1,25 @@
+class Solution
+{
+    int getMiddle(Node head)
+    {
+         // Your code here.
+         int c = 0;
+         Node temp = head;
+         Node temp1 = head;
+         
+         // find size of linked list
+         while(temp != null){
+            c++;
+            temp = temp.next;
+         }
+         
+         c /= 2;
+         
+         // find middle element from linked list usng size
+         while(c > 0){
+             temp1 = temp1.next;
+             c--;
+         }
+         return temp1.data;
+    }
+}
