@@ -1,0 +1,24 @@
+public void zeroShift(){
+
+    singlyLinkedList temp1 = head;
+    singlyLinkedList temp2 = head.next;
+
+    while(temp2 != null){
+        if(temp2.data == 0){
+
+            singlyLinkedList T = temp2;
+            temp2 = temp2.next;
+            temp1.next = temp2;
+            T.next = head;
+            head = T;
+        }
+        else {
+            temp1 = temp2;
+            temp2 = temp2.next;
+        }
+    }
+}
+
+// Input :-  1 -> 3 -> 0 -> 5 -> 0 -> 8 -> 9-> 0 -> 0
+
+// output :- 0 -> 0 -> 0 -> 0 -> 1 -> 3 -> 5-> 8 -> 9
