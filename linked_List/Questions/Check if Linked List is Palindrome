@@ -1,0 +1,51 @@
+class Solution
+{
+    //Function to check whether the list is palindrome.
+    
+    // find middle element of linked list
+    static Node mid(Node head){
+        
+        Node slow = head;
+        Node fast = head;
+        
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+    
+    // reverse a linked list from middle
+    static Node reverse(Node middle){
+        
+        Node n = null;
+        Node prev = null;
+        Node current = middle;
+        
+        while(current != null){
+           n = current.next;
+           current.next = prev;
+           prev = current;
+           current = n;
+        }
+        return prev;
+    }
+    
+    // check linked list palindrome or not
+    boolean isPalindrome(Node head) 
+    {
+        //Your code here
+        Node current = head;
+        Node middle = mid(head);
+        Node last = reverse(middle);
+        
+        while(last != null){
+            
+            if(current.data != last.data)
+            return false;
+            last = last.next;
+            current = current.next;
+        }
+        return true;
+    }    
+}
