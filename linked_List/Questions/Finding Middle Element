@@ -1,0 +1,22 @@
+class Solution
+{
+    int getMiddle(Node head)
+    {
+         // Your code here.
+         int c = 0;
+         Node fast = head;
+         Node slow = head;
+         
+         while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+         }
+         return slow.data;
+    }
+}
+
+/*
+Input:
+LinkedList: 1->2->3->4->5
+Output: 3 
+*/
