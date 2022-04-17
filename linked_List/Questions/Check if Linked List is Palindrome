@@ -2,7 +2,7 @@ class Solution
 {
     //Function to check whether the list is palindrome.
     
-    // find middle element of linked list
+    // find the middle element of linked list
     static Node mid(Node head){
         
         Node slow = head;
