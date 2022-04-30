@@ -21,7 +21,6 @@ class binarySearch {
             else
                 l = mid+1;
         }
-        if(l>r)
-            System.out.println("element not found");
+        System.out.println("element not found");
     }
 }
