@@ -21,11 +21,11 @@ public class QuickSortDemo {
   }
   // here in this partition method we are going to break down the array 
   // main logic of quick sort
-  public static int partition(int arr[], int p , int q )
+  public static int partition(int arr[], int start , int end )
   {
-    int pivot= q;
-    int i = p-1;
-    for(int j =p; j<=q;j++)
+    int pivot= end;
+    int i = start;
+    for(int j = start; j<=end ;j++)
     {
       if(arr[j]<=arr[pivot])
       {
